@@ -27,7 +27,6 @@ const fetchPopularRepositories = async ({
 
 const Home = async () => {
   const repos = await fetchPopularRepositories();
-  console.log(repos);
 
   return (
     <main className="mx-auto p-[16px] bg-[#05010d] space-y-[24px] text-white w-[800px]">
