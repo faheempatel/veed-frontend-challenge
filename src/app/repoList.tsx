@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
+import { FaBookmark, FaRegBookmark, FaRegStar } from 'react-icons/fa';
 import classNames from 'classnames';
 
 const RepoList = ({ repos }) => {
@@ -74,6 +74,7 @@ const RepoList = ({ repos }) => {
               <p className="font-bold">{repo.full_name}</p>
               <p className="max-w-prose">{repo.description}</p>
               <div className="flex gap-[8px] items-center">
+                <FaRegStar />
                 <p className="leading-none">{repo.stargazers_count}</p>
               </div>
               {repo.language && <p>{repo.language}</p>}

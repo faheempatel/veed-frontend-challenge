@@ -31,9 +31,10 @@ const Home = async () => {
 
   return (
     <main className="mx-auto p-[16px] bg-[#05010d] space-y-[24px] text-white w-[800px]">
-      <h1 className="text-[140px] text-white font-bold uppercase leading-none">
+      <h1 className="text-[140px] text-white font-black uppercase leading-none">
         Github
-        <br /> repos
+        <br />
+        repos
       </h1>
       <p className="text-[#9b999e]">
         Most starred repos created in the last 7 days
