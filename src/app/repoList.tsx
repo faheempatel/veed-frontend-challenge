@@ -4,17 +4,23 @@ import { useEffect, useState } from 'react';
 import { FaBookmark, FaRegBookmark, FaRegStar } from 'react-icons/fa';
 import classNames from 'classnames';
 
+const LOCAL_STORAGE_KEY = 'favourites';
+const FILTER_VALUES = {
+  ALL: 'all',
+  FAVOURITES: 'favourites',
+};
+
 const RepoList = ({ repos }) => {
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState(FILTER_VALUES.ALL);
   const [displayedRepos, setDisplayedRepos] = useState(repos);
 
   const [favourites, setFavourites] = useState<number[]>(() => {
-    const favourites = localStorage.getItem('favourites');
+    const favourites = localStorage.getItem(LOCAL_STORAGE_KEY);
     return favourites ? JSON.parse(favourites) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem('favourites', JSON.stringify(favourites));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favourites));
   }, [favourites]);
 
   const favouriteHandler = (id: number) => () => {
@@ -32,11 +38,12 @@ const RepoList = ({ repos }) => {
       <div className="flex gap-[16px]">
         <button
           className={classNames(buttonClasses, {
-            'bg-[#fff] text-[#1e1a25] font-bold': selectedFilter === 'all',
+            'bg-[#fff] text-[#1e1a25] font-bold':
+              selectedFilter === FILTER_VALUES.ALL,
           })}
           onClick={() => {
             setDisplayedRepos(repos);
-            setSelectedFilter('all');
+            setSelectedFilter(FILTER_VALUES.ALL);
           }}
         >
           All
@@ -44,14 +51,14 @@ const RepoList = ({ repos }) => {
         <button
           className={classNames(buttonClasses, {
             'bg-[#fff] text-[#1e1a25] font-bold':
-              selectedFilter === 'favourites',
+              selectedFilter === FILTER_VALUES.FAVOURITES,
           })}
           onClick={() => {
             setDisplayedRepos(
               repos.filter((repo) => favourites.includes(repo.id))
             );
 
-            setSelectedFilter('favourites');
+            setSelectedFilter(FILTER_VALUES.FAVOURITES);
           }}
         >
           Favourites
