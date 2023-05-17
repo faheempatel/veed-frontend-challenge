@@ -6,6 +6,8 @@ import classNames from 'classnames';
 
 const RepoList = ({ repos }) => {
   const [favourites, setFavourites] = useState<number[]>([]);
+  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [displayedRepos, setDisplayedRepos] = useState(repos);
 
   const favouriteHandler = (id: number) => () => {
     if (favourites.includes(id)) {
@@ -15,9 +17,39 @@ const RepoList = ({ repos }) => {
     }
   };
 
+  const buttonClasses = classNames('border-2 rounded border-[#fff] px-[32px]');
+
   return (
-    <>
-      {repos.map((repo) => {
+    <div className="grid grid-cols-1 gap-[16px]">
+      <div className="flex gap-[16px]">
+        <button
+          className={classNames(buttonClasses, {
+            'bg-[#fff] text-[#1e1a25] font-bold': selectedFilter === 'all',
+          })}
+          onClick={() => {
+            setDisplayedRepos(repos);
+            setSelectedFilter('all');
+          }}
+        >
+          All
+        </button>
+        <button
+          className={classNames(buttonClasses, {
+            'bg-[#fff] text-[#1e1a25] font-bold':
+              selectedFilter === 'favourites',
+          })}
+          onClick={() => {
+            setDisplayedRepos(
+              repos.filter((repo) => favourites.includes(repo.id))
+            );
+
+            setSelectedFilter('favourites');
+          }}
+        >
+          Favourites
+        </button>
+      </div>
+      {displayedRepos.map((repo) => {
         const favourited = favourites.includes(repo.id);
         return (
           <div
@@ -52,7 +84,7 @@ const RepoList = ({ repos }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
