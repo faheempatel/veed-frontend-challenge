@@ -1,13 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBookmark, FaRegBookmark, FaRegStar } from 'react-icons/fa';
 import classNames from 'classnames';
 
 const RepoList = ({ repos }) => {
-  const [favourites, setFavourites] = useState<number[]>([]);
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [displayedRepos, setDisplayedRepos] = useState(repos);
+
+  const [favourites, setFavourites] = useState<number[]>(() => {
+    const favourites = localStorage.getItem('favourites');
+    return favourites ? JSON.parse(favourites) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+  }, [favourites]);
 
   const favouriteHandler = (id: number) => () => {
     if (favourites.includes(id)) {
