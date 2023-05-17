@@ -1,10 +1,19 @@
 import classNames from 'classnames';
 import { FaBookmark, FaRegBookmark, FaRegStar } from 'react-icons/fa';
 
-const RepoCell = ({ repo, favourited, favouriteHandler }) => {
+import type { FavouriteHandler } from '../types';
+
+const RepoCell = ({
+  repo,
+  favourited,
+  favouriteHandler,
+}: {
+  repo: any;
+  favourited: boolean;
+  favouriteHandler: FavouriteHandler;
+}) => {
   return (
     <div
-      key={repo.id}
       className={classNames('relative p-[16px] rounded-md', {
         [favourited ? 'bg-yellow-500 text-yellow-900' : 'bg-[#1e1a25]']: true,
       })}

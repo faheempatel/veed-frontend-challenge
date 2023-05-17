@@ -1,4 +1,4 @@
-import RepoList from './repoList';
+import RepoList from './components/repoList';
 
 const fetchPopularRepositories = async ({
   createdDaysAgo = 7,
