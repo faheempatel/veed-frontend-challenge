@@ -1,3 +1,5 @@
+import RepoList from './repoList';
+
 const fetchPopularRepositories = async ({
   createdDaysAgo = 7,
   sort = 'stars',
@@ -28,27 +30,15 @@ const Home = async () => {
   console.log(repos);
 
   return (
-    <main className="">
-      <h1 className="">
+    <main className="mx-auto p-[16px] bg-[#05010d] space-y-[24px] text-white w-[800px]">
+      <h1 className="text-[140px] text-white font-bold uppercase leading-none">
         Github
         <br /> repos
       </h1>
-      <p className="">Most starred repos created in the last 7 days</p>
-      {repos.map((repo) => {
-        return (
-          <div key={repo.id}>
-            <div>
-              <p>{repo.full_name}</p>
-              <p>{repo.description}</p>
-              <p>{repo.stargazers_count}</p>
-              {repo.language && <p>{repo.language}</p>}
-              <a href={repo.html_url}>
-                <p>Link to repo</p>
-              </a>
-            </div>
-          </div>
-        );
-      })}
+      <p className="text-[#9b999e]">
+        Most starred repos created in the last 7 days
+      </p>
+      <RepoList repos={repos} />
     </main>
   );
 };
