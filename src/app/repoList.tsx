@@ -92,7 +92,7 @@ const RepoList = ({ repos }) => {
                 <FaRegStar />
                 <p className="leading-none">{repo.stargazers_count}</p>
               </div>
-              {repo.language && <p>{repo.language}</p>}
+              {repo.language && <p>Language: {repo.language}</p>}
               <a className="inline-block underline" href={repo.html_url}>
                 <p>Link to repo</p>
               </a>
