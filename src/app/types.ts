@@ -1,6 +1,6 @@
 export type Filter = {
   label: string;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
 };
 
 export type SelectedFilter = 'All' | 'Favourites';

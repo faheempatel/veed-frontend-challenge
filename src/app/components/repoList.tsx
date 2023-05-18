@@ -8,12 +8,12 @@ import RepoCell from './repoCell';
 import Filters from './filters';
 
 const LOCAL_STORAGE_KEY = 'favourites';
-const FILTER_LABELS: Record<string, SelectedFilter> = {
+const FILTER_LABELS: Record<Uppercase<SelectedFilter>, SelectedFilter> = {
   ALL: 'All',
   FAVOURITES: 'Favourites',
 };
 
-// TODO: Add types
+// TODO: Add type for repos
 const RepoList = ({ repos }: { repos: any }) => {
   const [displayedRepos, setDisplayedRepos] = useState(repos);
 
@@ -22,8 +22,8 @@ const RepoList = ({ repos }: { repos: any }) => {
   );
 
   const [favourites, setFavourites] = useState<number[]>(() => {
-    const favourites = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return favourites ? JSON.parse(favourites) : [];
+    const storedFavourites = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return storedFavourites ? JSON.parse(storedFavourites) : [];
   });
 
   useEffect(() => {
