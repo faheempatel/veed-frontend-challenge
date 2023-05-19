@@ -22,8 +22,15 @@ const RepoList = ({ repos }: { repos: any }) => {
   );
 
   const [favourites, setFavourites] = useState<number[]>(() => {
-    const storedFavourites = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return storedFavourites ? JSON.parse(storedFavourites) : [];
+    const defaultValue = [] as number[];
+    try {
+      // Try to get favourites from localStorage if any
+      const storedFavourites = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return storedFavourites ? JSON.parse(storedFavourites) : defaultValue;
+    } catch (error) {
+      console.error(error);
+      return defaultValue;
+    }
   });
 
   useEffect(() => {
