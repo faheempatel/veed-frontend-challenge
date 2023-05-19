@@ -33,7 +33,7 @@ const RepoList = ({ repos }: { repos: Repo[] }) => {
     setHasMounted(true);
   }, []);
 
-  const favouriteHandler: FavouriteHandler = (selectedId) => (event) => {
+  const toggleFavourite: FavouriteHandler = (selectedId) => (event) => {
     event.preventDefault();
     if (favourites.includes(selectedId)) {
       setFavourites(favourites.filter((id) => id !== selectedId));
@@ -73,7 +73,7 @@ const RepoList = ({ repos }: { repos: Repo[] }) => {
               <RepoCell
                 repo={repo}
                 favourited={favourited}
-                favouriteHandler={favouriteHandler}
+                favouriteHandler={toggleFavourite}
               />
             </li>
           );
