@@ -2,7 +2,6 @@ import RepoList from './components/repoList';
 
 const fetchPopularRepositories = async ({
   createdDaysAgo = 7,
-  sort = 'stars',
   order = 'desc',
   perPage = 10,
 } = {}) => {
@@ -14,7 +13,7 @@ const fetchPopularRepositories = async ({
 
   const query = `created:>${createdDateString}`;
 
-  const url = `${apiUrl}?q=${query}&sort=${sort}&order=${order}&per_page=${perPage}`;
+  const url = `${apiUrl}?q=${query}&sort=stars&order=${order}&per_page=${perPage}`;
   const response = await fetch(url);
   const data = await response.json();
 
