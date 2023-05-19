@@ -11,6 +11,11 @@ describe('RepoList', () => {
     cy.get('[aria-label="Favourite"]').eq(index).click();
   };
 
+  it('should display a list of repos', () => {
+    // TODO: better semantic selector
+    cy.get('ul > li').should('have.length.greaterThan', 0);
+  });
+
   it('should allow a repo to be favourited', () => {
     const rowIndex = 3;
     clickFavourite(rowIndex);
@@ -45,7 +50,7 @@ describe('RepoList', () => {
 
     cy.get(`[aria-label="Show ${filterLabel}"]`).click();
 
-    // TODO: nicer selector
+    // TODO: better semantic selector
     cy.get('ul > li').should('have.length', 3);
   });
 
@@ -55,11 +60,11 @@ describe('RepoList', () => {
 
     cy.get(`[aria-label="Show ${favLabel}"]`).click();
 
-    // TODO: nicer selector
+    // TODO: better semantic selector
     cy.get('ul > li').should('have.length', 0);
 
     cy.get(`[aria-label="Show ${allLabel}"]`).click();
-    // TODO: nicer selector
+    // TODO: better semantic selector
     cy.get('ul > li').should('have.length.greaterThan', 0);
   });
 });
