@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import type { FavouriteHandler, Filter, SelectedFilter } from '../types';
+import type { FavouriteHandler, Filter, Repo, SelectedFilter } from '../types';
 
 import RepoCell from './repoCell';
 import Filters from './filters';
@@ -13,8 +13,7 @@ const FILTER_LABELS: Record<Uppercase<SelectedFilter>, SelectedFilter> = {
   FAVOURITES: 'Favourites',
 };
 
-// TODO: Add type for repos
-const RepoList = ({ repos }: { repos: any }) => {
+const RepoList = ({ repos }: { repos: Repo[] }) => {
   const [displayedRepos, setDisplayedRepos] = useState(repos);
 
   const [selectedFilter, setSelectedFilter] = useState<SelectedFilter>(

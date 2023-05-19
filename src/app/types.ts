@@ -1,3 +1,9 @@
+export type Repo = {
+  id: number;
+  // TODO: add more properties
+  [key: string]: any;
+};
+
 export type Filter = {
   label: string;
   onClick: (event: React.MouseEvent) => void;
