@@ -26,6 +26,12 @@ const RepoList = ({ repos }: { repos: Repo[] }) => {
     []
   );
 
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   useEffect(() => {
     setFavourites(favourites);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +71,7 @@ const RepoList = ({ repos }: { repos: Repo[] }) => {
       <Filters filterList={filterList} selectedFilter={selectedFilter} />
       <ul className="mt-[24px] grid grid-cols-1 gap-[16px]">
         {displayedRepos.map((repo) => {
-          const favourited = favourites.includes(repo.id);
+          const favourited = hasMounted && favourites.includes(repo.id);
           return (
             <li key={repo.id}>
               <RepoCell
