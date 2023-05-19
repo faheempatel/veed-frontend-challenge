@@ -1,6 +1,6 @@
 describe('RepoList', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3001');
+    cy.visit('http://localhost:3000');
     // clear local storage
     cy.window().then((win) => {
       win.localStorage.clear();
