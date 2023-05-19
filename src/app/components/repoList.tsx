@@ -26,16 +26,12 @@ const RepoList = ({ repos }: { repos: Repo[] }) => {
     []
   );
 
+  // This is here to resolve a hydration mismatch between the server and client
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
   }, []);
-
-  useEffect(() => {
-    setFavourites(favourites);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [favourites]);
 
   const favouriteHandler: FavouriteHandler = (selectedId) => (event) => {
     event.preventDefault();
