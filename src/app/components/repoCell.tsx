@@ -1,21 +1,22 @@
 import classNames from 'classnames';
 import { FaBookmark, FaRegBookmark, FaRegStar } from 'react-icons/fa';
 
-import type { FavouriteHandler } from '../types';
+import type { FavouriteHandler, Repo } from '../types';
 
 const RepoCell = ({
   repo,
   favourited,
   favouriteHandler,
 }: {
-  repo: any;
+  repo: Repo;
   favourited: boolean;
   favouriteHandler: FavouriteHandler;
 }) => {
   return (
     <div
       className={classNames('relative p-[16px] rounded-md', {
-        [favourited ? 'bg-yellow-500 text-yellow-900' : 'bg-[#1e1a25]']: true,
+        'bg-yellow-500 text-yellow-900': favourited,
+        'bg-[#1e1a25]': !favourited,
       })}
     >
       <div
@@ -27,7 +28,7 @@ const RepoCell = ({
         onClick={favouriteHandler(repo.id)}
       >
         {favourited ? (
-          <FaBookmark title="favourited" className="w-[16px] h-[16px]" />
+          <FaBookmark className="w-[16px] h-[16px]" />
         ) : (
           <FaRegBookmark className="w-[16px] h-[16px]" />
         )}
