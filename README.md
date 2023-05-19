@@ -2,7 +2,7 @@
 
 ## Background
 
-Hi there! First of all thank you for your time in reviewing this :)
+Hi there! First of all, thank you for your time in reviewing this :)
 
 To give you some background information, this is a [Next.js 13](https://nextjs.org/) project. If you are already familiar with it you should be ok with navigating the project, but if not, you will find most of my code under `/src/app`.
 
@@ -12,6 +12,8 @@ The files you will mainly want to look at are:
 - `repoList.tsx`
 - `repoCell.tsx`
 - `filters.tsx`
+
+There is also an `error.tsx` which is a file that follows [Next.js 13 conventions](https://nextjs.org/docs/app/building-your-application/routing/error-handling) that allows for graceful handling of any runtime errors.
 
 ## Getting Started
 
@@ -33,7 +35,7 @@ Finally, start the production server:
 npm run start
 ```
 
-**Note:** If you would like to run the development server instead:
+**Note:** If you would like to run a development server, you should run the following instead:
 
 ```bash
 npm run dev
@@ -45,7 +47,7 @@ You can then open [http://localhost:3000](http://localhost:3000) with your brows
 
 The test spec can be found under: `cypress/e2e/repoList.cy.ts`.
 
-And if you would like to run the tests:
+And if you would like to run said tests:
 
 ```bash
 npm run cypress
