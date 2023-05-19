@@ -57,19 +57,22 @@ const RepoList = ({ repos }: { repos: any }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-[16px]">
+    <div>
       <Filters filterList={filterList} selectedFilter={selectedFilter} />
-      {displayedRepos.map((repo) => {
-        const favourited = favourites.includes(repo.id);
-        return (
-          <RepoCell
-            key={repo.id}
-            repo={repo}
-            favourited={favourited}
-            favouriteHandler={favouriteHandler}
-          />
-        );
-      })}
+      <ul className="mt-[24px] grid grid-cols-1 gap-[16px]">
+        {displayedRepos.map((repo) => {
+          const favourited = favourites.includes(repo.id);
+          return (
+            <li key={repo.id}>
+              <RepoCell
+                repo={repo}
+                favourited={favourited}
+                favouriteHandler={favouriteHandler}
+              />
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

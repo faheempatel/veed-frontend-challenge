@@ -14,6 +14,7 @@ const Filters = ({
       {filterList.map(({ label, onClick }) => (
         <button
           key={label}
+          aria-label={`Show ${label}`}
           onClick={onClick}
           className={classNames(buttonClasses, {
             'bg-[#fff] text-[#1e1a25] font-bold': selectedFilter === label,

@@ -20,10 +20,14 @@ const RepoCell = ({
     >
       <div
         className="cursor-pointer absolute  top-[16px] right-[16px]"
+        tabIndex={0}
+        aria-label="Favourite"
+        aria-roledescription="checkbox"
+        aria-checked={favourited}
         onClick={favouriteHandler(repo.id)}
       >
         {favourited ? (
-          <FaBookmark className="w-[16px] h-[16px]" />
+          <FaBookmark title="favourited" className="w-[16px] h-[16px]" />
         ) : (
           <FaRegBookmark className="w-[16px] h-[16px]" />
         )}
