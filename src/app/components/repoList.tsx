@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import useLocalStorage from '@/hooks/useLocalStorage';
 import type { FavouriteHandler, Filter, Repo, SelectedFilter } from '../types';
 
 import RepoCell from './repoCell';
@@ -20,20 +21,14 @@ const RepoList = ({ repos }: { repos: Repo[] }) => {
     FILTER_LABELS.ALL
   );
 
-  const [favourites, setFavourites] = useState<number[]>(() => {
-    const defaultValue = [] as number[];
-    try {
-      // Try to get favourites from localStorage if any
-      const storedFavourites = localStorage.getItem(LOCAL_STORAGE_KEY);
-      return storedFavourites ? JSON.parse(storedFavourites) : defaultValue;
-    } catch (error) {
-      console.error(error);
-      return defaultValue;
-    }
-  });
+  const [favourites, setFavourites] = useLocalStorage<number[]>(
+    LOCAL_STORAGE_KEY,
+    []
+  );
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favourites));
+    setFavourites(favourites);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favourites]);
 
   const favouriteHandler: FavouriteHandler = (selectedId) => (event) => {
@@ -56,7 +51,10 @@ const RepoList = ({ repos }: { repos: Repo[] }) => {
     {
       label: FILTER_LABELS.FAVOURITES,
       onClick: () => {
-        setDisplayedRepos(repos.filter((repo) => favourites.includes(repo.id)));
+        const onlyFavourites = repos.filter((repo) =>
+          favourites.includes(repo.id)
+        );
+        setDisplayedRepos(onlyFavourites);
         setSelectedFilter(FILTER_LABELS.FAVOURITES);
       },
     },
